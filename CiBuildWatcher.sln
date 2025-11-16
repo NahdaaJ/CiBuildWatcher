@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiBuildWatcher.McpServer", "CiBuildWatcher.McpServer\CiBuildWatcher.McpServer.csproj", "{C7C2BAD8-CCA2-428E-BD00-1042A64E35EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiBuildWatcher.CliDemo", "CiBuildWatcher.CliDemo\CiBuildWatcher.CliDemo.csproj", "{62F61B2F-4922-2EEA-2C7F-B1421D20A89D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C7C2BAD8-CCA2-428E-BD00-1042A64E35EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7C2BAD8-CCA2-428E-BD00-1042A64E35EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7C2BAD8-CCA2-428E-BD00-1042A64E35EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62F61B2F-4922-2EEA-2C7F-B1421D20A89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F61B2F-4922-2EEA-2C7F-B1421D20A89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F61B2F-4922-2EEA-2C7F-B1421D20A89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F61B2F-4922-2EEA-2C7F-B1421D20A89D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
