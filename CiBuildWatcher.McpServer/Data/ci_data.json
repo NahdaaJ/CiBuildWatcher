@@ -1,0 +1,113 @@
+{
+  "repositories": [
+    {
+      "name": "PaymentService",
+      "lastBuildAt": "2025-11-15T18:52:00Z",
+      "lastBuildStatus": "Success",
+      "builds": [
+        {
+          "buildNumber": 102,
+          "startedAt": "2025-11-15T18:42:00Z",
+          "finishedAt": "2025-11-15T18:52:00Z",
+          "status": "Success"
+        },
+        {
+          "buildNumber": 101,
+          "startedAt": "2025-11-10T09:12:00Z",
+          "finishedAt": "2025-11-10T09:25:00Z",
+          "status": "Success"
+        }
+      ]
+    },
+    {
+      "name": "UserPortal",
+      "lastBuildAt": "2025-11-06T18:52:00Z",
+      "lastBuildStatus": "Failed",
+      "builds": [
+        {
+          "buildNumber": 58,
+          "startedAt": "2025-11-06T18:32:00Z",
+          "finishedAt": "2025-11-06T18:52:00Z",
+          "status": "Failed"
+        },
+        {
+          "buildNumber": 57,
+          "startedAt": "2025-11-04T10:12:00Z",
+          "finishedAt": "2025-11-04T10:25:00Z",
+          "status": "Success"
+        }
+      ]
+    },
+    {
+      "name": "ReportingJob",
+      "lastBuildAt": "2025-10-26T18:52:00Z",
+      "lastBuildStatus": "Success",
+      "builds": [
+        {
+          "buildNumber": 12,
+          "startedAt": "2025-10-26T18:22:00Z",
+          "finishedAt": "2025-10-26T18:52:00Z",
+          "status": "Success"
+        }
+      ]
+    },
+    {
+      "name": "InventoryApi",
+      "lastBuildAt": "2025-11-10T09:30:00Z",
+      "lastBuildStatus": "Success",
+      "builds": [
+        {
+          "buildNumber": 88,
+          "startedAt": "2025-11-10T09:15:00Z",
+          "finishedAt": "2025-11-10T09:30:00Z",
+          "status": "Success"
+        },
+        {
+          "buildNumber": 87,
+          "startedAt": "2025-11-07T11:03:00Z",
+          "finishedAt": "2025-11-07T11:17:00Z",
+          "status": "Failed"
+        }
+      ]
+    },
+    {
+      "name": "EmailDispatcher",
+      "lastBuildAt": "2025-10-20T14:10:00Z",
+      "lastBuildStatus": "Failed",
+      "builds": [
+        {
+          "buildNumber": 33,
+          "startedAt": "2025-10-20T13:50:00Z",
+          "finishedAt": "2025-10-20T14:10:00Z",
+          "status": "Failed"
+        }
+      ]
+    },
+    {
+      "name": "AnalyticsEngine",
+      "lastBuildAt": "2025-11-02T12:45:00Z",
+      "lastBuildStatus": "Success",
+      "builds": [
+        {
+          "buildNumber": 145,
+          "startedAt": "2025-11-02T12:30:00Z",
+          "finishedAt": "2025-11-02T12:45:00Z",
+          "status": "Success"
+        }
+      ]
+    },
+    {
+      "name": "NotificationHub",
+      "lastBuildAt": "2025-10-28T07:20:00Z",
+      "lastBuildStatus": "Failed",
+      "builds": [
+        {
+          "buildNumber": 22,
+          "startedAt": "2025-10-28T06:50:00Z",
+          "finishedAt": "2025-10-28T07:20:00Z",
+          "status": "Failed"
+        }
+      ]
+    }
+  ]
+}

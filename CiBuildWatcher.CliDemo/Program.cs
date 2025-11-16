@@ -17,7 +17,7 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        Console.WriteLine("🔌 Starting CiBuildWatcher CLI demo…");
+        Console.WriteLine("> Starting CiBuildWatcher CLI demo…");
 
         // Figure out the solution root from the current executable location
         var baseDir = AppContext.BaseDirectory;
@@ -30,8 +30,6 @@ internal class Program
             "CiBuildWatcher.McpServer",
             "CiBuildWatcher.McpServer.csproj");
 
-        Console.WriteLine($"Server project path: {serverProjectPath}");
-
         var transport = new StdioClientTransport(new StdioClientTransportOptions
         {
             Name = "CiBuildWatcherDemo",
@@ -41,34 +39,47 @@ internal class Program
 
         var client = await McpClient.CreateAsync(transport);
 
-        Console.WriteLine("✅ Connected to MCP server.");
+        Console.WriteLine("> Connected to MCP server.");
         Console.WriteLine();
 
         // 1) List tools
-        Console.WriteLine("🧰 Available tools:");
+        Console.WriteLine("----------------------- AVAILABLE TOOLS -----------------------");
         var tools = await client.ListToolsAsync();
         foreach (var tool in tools)
         {
             Console.WriteLine($"- {tool.Name}: {tool.Description}");
         }
 
-        Console.WriteLine();
-        Console.WriteLine("▶ Demo: list_repos");
-        await CallAndPrintToolAsync(client, "list_repos");
+        Console.ReadKey();
 
         Console.WriteLine();
-        Console.WriteLine("▶ Demo: list_builds for 'PaymentService'");
+        Console.WriteLine(">>>> Demo: list_repos");
+        await CallAndPrintToolAsync(client, "list_repos");
+        Console.ReadKey();
+
+        Console.WriteLine();
+        Console.WriteLine(">>>> Demo: list_builds for repo 'PaymentService'");
         await CallAndPrintToolAsync(client, "list_builds", new Dictionary<string, object?>
         {
             ["repoName"] = "PaymentService"
         });
+        Console.ReadKey();
 
         Console.WriteLine();
-        Console.WriteLine("▶ Demo: get_stale_repos (default 14 days)");
+        Console.WriteLine(">>>> Demo: get_repo_status for repo 'UserPortal'");
+        await CallAndPrintToolAsync(client, "get_repo_status", new Dictionary<string, object?>
+        {
+            ["repoName"] = "UserPortal"
+        });
+        Console.ReadKey();
+
+        Console.WriteLine();
+        Console.WriteLine(">>>> Demo: get_stale_repos (default 14 days)");
         var staleText = await CallAndPrintToolAsync(client, "get_stale_repos");
+        Console.ReadKey();
 
         Console.WriteLine();
-        Console.WriteLine("🤖 LLM summary (Ollama / llama3.2):");
+        Console.WriteLine("~ LLM summary (Ollama / llama3.2):");
 
         try
         {
@@ -80,9 +91,54 @@ internal class Program
             Console.WriteLine($"[Could not contact Ollama: {ex.Message}]");
         }
 
+        Console.ReadKey();
 
         Console.WriteLine();
-        Console.WriteLine("🎉 Demo complete. Press any key to exit.");
+        Console.WriteLine("----------------------- EXTRA TOOLS -----------------------\n");
+        Console.WriteLine("> Demo: get_failed_builds (last 30 days)");
+        await CallAndPrintToolAsync(client, "get_failed_builds", new Dictionary<string, object?>
+        {
+            ["days"] = 30
+        });
+        Console.ReadKey();
+
+        Console.WriteLine();
+        Console.WriteLine("> Demo: get_repo_failure_rate for 'InventoryApi'");
+        await CallAndPrintToolAsync(client, "get_repo_failure_rate", new Dictionary<string, object?>
+        {
+            ["repoName"] = "InventoryApi",
+            ["lastN"] = 10
+        });
+        Console.ReadKey();
+
+        Console.WriteLine();
+        Console.WriteLine("> Demo: get_flaky_repos (last 30 days)");
+        await CallAndPrintToolAsync(client, "get_flaky_repos", new Dictionary<string, object?>
+        {
+            ["days"] = 30
+        });
+        Console.ReadKey();
+
+        Console.WriteLine();
+        Console.WriteLine("> Demo: get_build_health_overview");
+        var overviewText = await CallAndPrintToolAsync(client, "get_build_health_overview");
+        Console.ReadKey();
+
+        Console.WriteLine();
+        Console.WriteLine("~ LLM summary (Ollama / llama3.2):");
+
+        try
+        {
+            var summary = await SummariseWithOllamaAsync(overviewText);
+            Console.WriteLine(summary);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[Could not contact Ollama: {ex.Message}]");
+        }
+
+        Console.WriteLine();
+        Console.WriteLine(">> Demo complete! Press any key to exit.");
         Console.ReadKey();
     }
 
@@ -120,7 +176,9 @@ internal class Program
             messages = new[]
             {
             new { role = "system", content = "You are a helpful DevOps assistant." },
-            new { role = "user", content = $"Summarise this CI/CD status in 2 bullet points:\n{ciText}" }
+            new { role = "user", content = $"Summarise this CI/CD status in 2 bullet points:\n{ciText}." +
+            $"\nExplain to the user that they should run the pipeline again, and describe methods " +
+            $"(assuming its azure ado) to make sure the build is run frequently." }
         }
         };
 

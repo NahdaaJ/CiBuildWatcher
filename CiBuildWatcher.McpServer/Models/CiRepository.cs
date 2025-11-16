@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace CiBuildWatcher.McpServer.Models;
 
-namespace CiBuildWatcher.McpServer.Models
+public class CiRepository
 {
-    public class CiRepository
-    {
-        public string Name { get; set; } = string.Empty;
-        public DateTime LastBuildAt { get; set; }
-        public string LastBuildStatus { get; set; } = "Unknown";
-    }
+    public string Name { get; set; } = string.Empty;
+    public DateTime LastBuildAt { get; set; }
+    public string LastBuildStatus { get; set; } = "Unknown";
+
+    public List<BuildRecord> Builds { get; set; } = new();
 }
+
